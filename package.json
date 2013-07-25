@@ -1,0 +1,30 @@
+{
+  "name": "typedef",
+  "version": "0.13.0",
+  "description": "Familiar classes, mixins, and interfaces in ES5 Javascript. Member decorations for powerful objects that keep your code DRY",
+  "main": "lib/typedef.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:bvalosek/compose.js.git"
+  },
+  "author": "Brandon Valosek",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-browserify": "~1.2.0",
+    "grunt-contrib-qunit": "~0.2.2"
+  },
+  "dependencies": {
+    "underscore": "~1.5.1"
+  }
+}
