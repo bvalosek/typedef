@@ -1,5 +1,7 @@
 # Typedef
 
+[![Build Status](https://travis-ci.org/bvalosek/typedef.png?branch=master)](https://travis-ci.org/bvalosek/typedef)
+
 **Typedef** is a lightweight library (1.7 KB, 4.7 KB with
 [underscore.js](http://www.underscorejs.org) bundled in) that brings some
 much-needed sanity to object-oriented programming in Javascript. These features
