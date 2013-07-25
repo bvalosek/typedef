@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:bvalosek/compose.js.git"
+    "url": "git@github.com:bvalosek/typedef.git"
   },
   "author": "Brandon Valosek",
   "license": "MIT",
