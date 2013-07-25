@@ -25,8 +25,8 @@ built around the language and keep an open mind... you're in for a wild ride.
   rich class hierarchy that feels sane, with all the power and common sense
   you've come to expect in an object-oriented language.
 
-* **Mixins.** Add member functions to a class without enforcing a
-  strict single-inheritance relationships. The `before`, `after`, and `wrapped`
+* **Mixins.** Add member functions to a class without enforcing a strict
+  single-inheritance relationships. The `before`, `after`, and `wrapped`
   "advice" decorations can be used to modify existing functions.
 
 * **Interfaces.** Classical `interface` pattern lets you write code that is
@@ -44,6 +44,17 @@ built around the language and keep an open mind... you're in for a wild ride.
 
 ## Getting Started
 
+**Typedef** is packaged with the [UMD pattern](https://github.com/umdjs/umd), so it can be used in the browser via a global with a `<script>` tag, on the server with Node, as an AMD module with RequireJS, or with CommonJS via [Browserify](https://github.com/substack/node-browserify).
+
+### Building
+
+Install all of the required modules to build and use `grunt` to build the files into the `bin/` directory:
+
+```
+npm install
+grunt release
+```
+
 ## Defining Classes
 
 ### Extending Classes
@@ -51,15 +62,6 @@ built around the language and keep an open mind... you're in for a wild ride.
 ### Using Mixins
 
 ### Implementing Interfaces
-
-## Class Member Decorations
-
-Member decorations are a key part of **Typedef**. They allow for the attachment
-of meta tags onto members during class definition. This meta information can
-then be used to inforce certain rules, or change the behavior of the member.
-
-All decorations are surrounded by 2 underscores, and multiple decorations can
-be set on a single member.
 
 ## Inheritance Decorations
 
@@ -94,7 +96,7 @@ definition.
 
 ### wrapped
 
-## Semantic Decorations
+## Behavior-enforcing Decorations
 
 ### fluent
 
@@ -114,12 +116,12 @@ definition.
 
 ### Tests
 
+Testing is powered by [QUnit](http://qunitjs.com/) and can be run from the command line via `grunt-contrib-qunit`. To install all modules and test:
+
 ```
 npm install
 grunt test
 ```
-
-## Special Thanks
 
 ### Contributers
 
