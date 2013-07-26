@@ -78,11 +78,14 @@ It works exactly as you might imagine.
 Notice that the (optional) constructor function is provided via the
 `__constructor__` property in the hash.
 
+Classes are constructor functions that leverage the native prototypical
+inheritance model.
+
 ### Extending Classes
 
 **Typedef** allows for single-inheritance from a base class via chaining the
-`.extends()` function in your class def. Child constructors are implicitly
-called, from the base up, when instantiating child classes.
+`.extends()` function in your class definition. Child constructors are
+implicitly called, from the base up, when instantiating child classes.
 
 ```
 // Child class definition example
@@ -180,6 +183,13 @@ exception.
 ## Accessor Decorations
 
 ### readonly
+
+Using the `readonly` decoration will define the property with the `writable`
+flag set to `false`. Any attempts to update a `readonly` property will silently
+fail (unless you `use strict`).
+
+Note that this only applies for the values of members; if a member set as
+`readonly` is initialized with an object, that object can still be mutated.
 
 ### static
 
