@@ -46,7 +46,10 @@ built around the language and keep an open mind... you're in for a wild ride.
 
 ## Getting Started
 
-**Typedef** is packaged with the [UMD pattern](https://github.com/umdjs/umd), so it can be used in the browser via a global with a `<script>` tag, on the server with Node, as an AMD module with RequireJS, or with CommonJS via [Browserify](https://github.com/substack/node-browserify).
+**Typedef** is packaged with the [UMD pattern](https://github.com/umdjs/umd),
+so it can be used in the browser via a global with a `<script>` tag, on the
+server with Node, as an AMD module with RequireJS, or with CommonJS via
+[Browserify](https://github.com/substack/node-browserify).
 
 ### Building
 
@@ -59,11 +62,73 @@ grunt release
 
 ## Defining Classes
 
+Easy peasy. Defining a class involves passing a hash of all the corresponding
+member functions to the typedef function, as well as (optionally) naming the class.
+
+```
+// Base class definition example ....
+```
+
+It works exactly as you might imagine.
+
+```
+// Base class instantiation and use example ...
+```
+
+Notice that the (optional) constructor function is provided via the
+`__constructor__` property in the hash.
+
 ### Extending Classes
+
+**Typedef** allows for single-inheritance from a base class via chaining the
+`.extends()` function in your class def. Child constructors are implicitly
+called, from the base up, when instantiating child classes.
+
+```
+// Child class definition example
+```
+
+Child classes can be thought of as inheriting the members of the base class--
+though really what is going on is simply building up the native prototype
+chain.
+
+```
+// Child class use example
+```
 
 ### Using Mixins
 
+Mixins provide a way to add or augment existing member functions in a class.
+Multiple mixins can be used during a class definition, and the *advice*
+decorations allow for modifying existing functions.
+
+Mixins are added *after* the class is setup, meaning any wrapping augmentations
+will be applied on top of defined members of the class.
+
+To add a mixin to your class definition, chain the `.uses()` method in your
+definition.
+
+```
+// Mixin definition ...
+```
+
 ### Implementing Interfaces
+
+Interfaces give you a way of specifying a required set of member functions be
+present in a class implementation. Though this may seem superfluous for a
+duck-typed language like Javascript, this allows you run-time inspection of an
+object's abilities with a greater degree of clarity.
+
+In addition, using interface patterns allows for your code to be more
+self-documenting. Any discrepancy between a class and an interface it
+implements will cause define-time exception, informing you of the issue.
+
+Specify that a class implements a specific interface by chaining the
+`implements()` method in your class definition.
+
+```
+// Interface definition ...
+```
 
 ## Inheritance Decorations
 
@@ -76,13 +141,41 @@ definition.
 
 ### virtual
 
+The `virtual` decoration follows its classical use, in that indicates a class
+member *may* be overridden in child class. By default, all members are
+non-virtual, and thus cannot be overridden. This effectively makes any sort of
+member hiding in **Typedef** explicit.
+
+Attempting to override a base member that isn't virtual will result in a
+define-time error.
+
 ### abstract
+
+An `abstract` member is the same as a `virtual` member, with the difference
+that a derived class *must* override the abstract member.
+
+A class with at least one abstract member is considered an abstract class. An
+exception is thrown when attempting to instantiate an abstract class.
 
 ### override
 
-### sealed
+The `override` decoration is required when overriding a base member in a child
+class. The base member must be `virtual`.
 
 ### new
+
+The `new` decoration indicates that the previous implementation of a member is
+to be disregarded. This can be used to explicitly hide a base class member that
+isn't set to `virtual`, for example.
+
+### sealed
+
+A `sealed` member indicates that it cannot be override at all, even if using
+the `new` decoration. This provides a way to very clearly indicate that a
+member should not be changed in derived implementations of a class.
+
+Attempting to override a `sealed` member will result in a define-time
+exception.
 
 ## Accessor Decorations
 
@@ -102,13 +195,18 @@ definition.
 
 ### fluent
 
-## Constructor Decoration
+This decoration allows you to signal in your public API that method is designed
+to returned the `this` pointer. This allows for the elegant "fluent API" style
+of method chaining.
 
-### constructor
+The define-time check uses `function#toString` to check all return statements
+to ensure that they are returning `this`. Returning something else (or not
+having any `return` statements) will result in a define-time warning.
 
 ## Compatibility
 
-**Typedef** will work with the following browsers:
+**Typedef** makes liberal use of ES5 features such as `Object.defineProperty`
+and `Object.create`, and thus will work with any modern browser:
 
 * Chrome 7+
 * Firefox 4+
@@ -118,7 +216,8 @@ definition.
 
 ### Tests
 
-Testing is powered by [QUnit](http://qunitjs.com/) and can be run from the command line via `grunt-contrib-qunit`. To install all modules and test:
+Testing is powered by [QUnit](http://qunitjs.com/) and can be run from the
+command line via `grunt-contrib-qunit`. To install all modules and test:
 
 ```
 npm install
