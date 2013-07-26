@@ -1,6 +1,6 @@
 {
   "name": "typedef",
-  "version": "0.13.1",
+  "version": "0.13.2",
   "description": "Familiar classes, mixins, and interfaces in ES5 Javascript. Member decorations for powerful objects that keep your code DRY",
   "main": "lib/typedef.js",
   "directories": {
