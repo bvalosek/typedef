@@ -14,6 +14,63 @@ the client (or just as a normal Node module), so install it with npm:
 npm install typedef
 ```
 
+## Usage
+
+### extends
+
+This is the `extends` function that is used in Typescript, Coffeescript, ES6
+compilers, etc. It uses prototypes to setup something similar to to classical
+single inheritance.
+
+```javascript
+var extends_ = require('typedef').extends;
+
+function Base()
+{
+  console.log('base ctor');
+}
+
+Base.prototype.method = function()
+{
+  console.log('hello from base class');
+}
+
+...
+
+extends_(Child, Base);
+
+function Child()
+{
+  // Call base constructor
+  Child.Super.apply(this, arguments);
+
+  console.log('child ctor');
+}
+
+Child.prototype.method2 = function()
+{
+  console.log('hello from child class');
+}
+
+...
+
+var foo = new Child();
+// base ctor
+// child ctor
+
+foo.method();
+// hello from base class
+
+foo.method2();
+// hello from child class
+
+foo instanceof Child;
+// true
+
+foo instanceof Base;
+// true
+```
+
 ## Tern Support
 
 The library files are all decorated with [JSDoc](http://usejsdoc.org/)-style
