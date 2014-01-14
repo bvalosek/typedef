@@ -1,7 +1,15 @@
 {
   "name": "typedef",
   "version": "0.18.0",
-  "description": "Utility functions for creating types in ES5 Javascript",
+  "description": "Low-level type-centric utility functions for Javascript.",
+  "keywords": [
+    "inheritance",
+    "mixin",
+    "typedef",
+    "function",
+    "classes",
+    "mixins"
+  ],
   "directories": {
     "test": "test"
   },
