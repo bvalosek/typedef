@@ -59,6 +59,32 @@ test('Inherited member functions', function(t) {
 
 });
 
+test('Inherited static functions', function(t) {
+  t.plan(6);
+
+  function Parent() { }
+  Parent.foo = function() { return 'parent'; };
+
+  function Child() { }
+  extends_(Child, Parent);
+  Child.bar = function() { return 'child'; };
+
+  function Sibling() { }
+  extends_(Sibling, Parent);
+  function GrandChild() { }
+  extends_(GrandChild, Child);
+  function Cousin() { }
+  extends_(Cousin, Sibling);
+
+  t.strictEqual(Parent.foo(), 'parent', 'parent static method on parent');
+  t.strictEqual(Child.foo(), 'parent', 'parent static method on child');
+  t.strictEqual(GrandChild.foo(), 'parent', 'parent static method on grandchild');
+  t.strictEqual(Child.bar(), 'child', 'child static method on child');
+  t.strictEqual(GrandChild.bar(), 'child', 'child static method on grandchild');
+
+  t.notOk(Parent.bar, 'child static method doesnt appear on parent');
+});
+
 test('Constructor property', function(t) {
   t.plan(2);
 
@@ -68,5 +94,20 @@ test('Constructor property', function(t) {
 
   t.strictEqual(new Parent().constructor, Parent, 'base class ctor');
   t.strictEqual(new Child().constructor, Child, 'child class ctor');
+
+});
+
+test('Static Super member property', function(t) {
+  t.plan(3);
+
+  function Parent() { }
+  function Child () { }
+  extends_(Child, Parent);
+  function GrandChild () { }
+  extends_(GrandChild, Child);
+
+  t.strictEqual(Parent.Super, undefined, 'no super on parent');
+  t.strictEqual(Child.Super, Parent, 'child points back to parent');
+  t.strictEqual(GrandChild.Super, Child, 'grandchild points to child');
 
 });
