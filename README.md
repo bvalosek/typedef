@@ -5,10 +5,12 @@
 
 Low-level type-centric utility functions for Javascript.
 
+[![browser support](https://ci.testling.com/bvalosek/typedef.png)](https://ci.testling.com/bvalosek/typedef)
+
 ## Installation
 
-**Typedef** is meant to be used with [Browserify](http://browserify.org/) on
-the client (or just as a normal Node module), so install it with npm:
+**Typedef** can be used on the server with NodeJS or on the client, built with
+[Browserify](http://browserify.org/), so install with npm:
 
 ```
 npm install typedef
@@ -16,7 +18,10 @@ npm install typedef
 
 ## Usage
 
-### extends
+### extends(`Child`, `Base`)
+
+While traditionally, favoring composition over inheritance in Javascript is
+typically the way to go, classic inheritance can be useful if used sparingly.
 
 This is the `extends` function that is used in Typescript, Coffeescript, ES6
 compilers, etc. It uses prototypes to setup something similar to to classical
@@ -71,34 +76,50 @@ foo instanceof Base;
 // true
 ```
 
+### mixin(`Constructor`, `Mixin`)
+
+Class composition method. Mixin methods into `Constructor.prototype`.
+
+If `Mixin` is a constructor function (class), then mixin all static properties
+into `Constructor`, and everything on `Mixin.prototype` to
+`Constructor.prototype`. If `Mixin` is just a Plain Old Object, then simply add
+the members of `Mixin` to `Contructor.prototype`.
+
+### getArguments(`f`) and getName(`f`)
+
+Get the name of all the parameters or name for function `f`.
+
+```javascript
+var getArguments = require('typedef').getArguments;
+var getName      = require('typedef').getName;
+
+function foo(a, b, c)
+{
+  ...
+}
+
+getArguments(foo);
+// ['a', 'b', 'c']
+
+getName(foo);
+// 'foo'
+```
+
 ## Tern Support
 
-The library files are all decorated with [JSDoc](http://usejsdoc.org/)-style
-annotations that work great with the [Tern](http://ternjs.net/) code interence
+The library files are all decorated with [JSDoc3](http://usejsdoc.org/)-style
+annotations that work great with the [Tern](http://ternjs.net/) code inference
 system. Combined with the Node plugin (see this project's `.tern-project`
 file), you can have intelligent autocomplete for methods in this library.
 
 ## Testing
 
-Unit testing is done by [QUnit](http://qunitjs.com/) and can be run from the
-command line via [Grunt](http://gruntjs.com/).
+Testing is done with [Tape](http://github.com/substack/tape) and can be run
+with the command `npm test`.
 
-Testing requires [node/npm](http://nodejs.org) and
-[grunt-cli](https://github.com/gruntjs/grunt-cli) to be installed on your
-system.
+Automated CI cross-browser testing is provided by
+[Testling](http://ci.testling.com/bvalosek/typedef).
 
-To ensure you have the required apps:
-
-```
-npm install -g grunt-cli
-```
-
-Then install all the dev dependencies and run the tests:
-
-```
-npm install
-grunt test
-```
 
 ## License
 Copyright 2014 Brandon Valosek
