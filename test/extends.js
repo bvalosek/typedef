@@ -33,7 +33,7 @@ test('Operator instanceof semantics', function(t) {
 });
 
 test('Inherited member functions', function(t) {
-  t.plan(3);
+  t.plan(6);
 
   function Parent() { }
   Parent.prototype.foo = function() { return 'parent'; };
@@ -52,6 +52,21 @@ test('Inherited member functions', function(t) {
   t.strictEqual(new Parent().foo(), 'parent', 'parent method on parent');
   t.strictEqual(new Child().foo(), 'parent', 'parent method on child');
   t.strictEqual(new GrandChild().foo(), 'parent', 'parent method on grandchild');
+  t.strictEqual(new Child().bar(), 'child', 'child method on child');
+  t.strictEqual(new GrandChild().bar(), 'child', 'child method on grandchild');
 
+  t.notOk(new Parent().bar, 'child method doesnt appear on parent');
+
+});
+
+test('Constructor property', function(t) {
+  t.plan(2);
+
+  function Parent() { }
+  function Child () { }
+  extends_(Child, Parent);
+
+  t.strictEqual(new Parent().constructor, Parent, 'base class ctor');
+  t.strictEqual(new Child().constructor, Child, 'child class ctor');
 
 });
