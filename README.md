@@ -126,4 +126,3 @@ Copyright 2014 Brandon Valosek
 
 **Typedef** is released under the MIT license.
 
-
