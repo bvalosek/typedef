@@ -21,7 +21,6 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "readmeFilename": "README.md",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
