@@ -1,6 +1,6 @@
 {
   "name": "typedef",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Low-level type-centric utility functions for Javascript.",
   "keywords": [
     "inheritance",
