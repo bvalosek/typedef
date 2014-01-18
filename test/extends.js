@@ -111,3 +111,26 @@ test('Static Super member property', function(t) {
   t.strictEqual(GrandChild.Super, Child, 'grandchild points to child');
 
 });
+
+test('Static member overriden by child', function(t) {
+  t.plan(2);
+
+  var A = 'A';
+  var B = 'B';
+
+  function Parent() { }
+  Parent.foo = A;
+
+  // Trivial case of extends being called first
+  function Child() { }
+  extends_(Child, Parent);
+  Child.foo = B;
+  t.strictEqual(Child.foo, B, 'Child foo');
+
+  // Using extends aftewards should skip over any statics already on child
+  function Child2() { }
+  Child2.foo = B;
+  extends_(Child2, Parent);
+  t.strictEqual(Child2.foo, B, 'Child2 foo');
+
+});
