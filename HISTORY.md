@@ -1,5 +1,9 @@
 # Change History
 
+## 1.0.04 (2014-05-17)
+
+* Updated NPM dependencies.
+
 ## 1.0.3 (2014-04-14)
 
 * Fixed a bug that would cause incorrect arguments to be parsed from a
