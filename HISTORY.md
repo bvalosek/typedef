@@ -1,6 +1,12 @@
 # Change History
 
-## 1.0.04 (2014-05-17)
+## 1.1.0 (2014-08-28)
+
+* Allow `extends_` method to delegate to `Parent.extend` if present. This way
+  typedef can be used with libs like [AmpersandJS](http://ampersandjs.com/)
+  and [Backbone](http://backbonejs.org/).
+
+## 1.0.4 (2014-05-17)
 
 * Updated NPM dependencies.
 
